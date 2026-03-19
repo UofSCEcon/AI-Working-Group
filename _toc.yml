@@ -8,3 +8,8 @@ parts:
       - file: background_tools/git_github
       - file: background_tools/markdown
       - file: background_tools/text_editors
+
+  - caption: Agentic AI in Economics Research
+    chapters:
+      - file: agentic_ai/overview
+      - file: agentic_ai/korinek_jel

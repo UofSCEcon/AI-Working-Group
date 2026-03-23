@@ -1,0 +1,1131 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Unit Tests and Test-Driven Development &#8212; USC Economics AI Working Group</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=1ae7504c"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'background_tools/unit_tests_tdd';</script>
+    <link rel="canonical" href="https://uofsceon.github.io/AI-Working-Group/background_tools/unit_tests_tdd.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Agentic AI in Economics Research" href="../agentic_ai/overview.html" />
+    <link rel="prev" title="Text Editors" href="text_editors.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">USC Economics AI Working Group</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    USC Economics AI Working Group
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Background Tools</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Background Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="git_github.html">Git and GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="markdown.html">Markdown</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text_editors.html">Text Editors</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Unit Tests and Test-Driven Development</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Agentic AI in Economics Research</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../agentic_ai/overview.html">Agentic AI in Economics Research</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agentic_ai/korinek_jel.html">Korinek (2025): AI Agents for Economic Research</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/UofSCEcon/AI-Working-Group" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/UofSCEcon/AI-Working-Group/issues/new?title=Issue%20on%20page%20%2Fbackground_tools/unit_tests_tdd.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/background_tools/unit_tests_tdd.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Unit Tests and Test-Driven Development</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-what-are-unit-tests-and-tdd">Background: What Are Unit Tests and TDD?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests">Unit Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-driven-development">Test-Driven Development</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tdd-and-ai-assisted-coding">TDD and AI-Assisted Coding</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests-in-python-with-pytest">Unit Tests in Python with pytest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-basic-test">A Basic Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-tests">Running Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-floating-point-results">Testing Floating-Point Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-expected-errors">Testing for Expected Errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tdd-example-calculating-a-poverty-rate">TDD Example: Calculating a Poverty Rate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixtures-and-parametrize">Fixtures and Parametrize</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizing-tests">Organizing Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-with-github-actions">Integration with GitHub Actions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests-in-r-with-testthat">Unit Tests in R with testthat</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">A Basic Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Running Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-expectation-functions">Common Expectation Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tdd-example-a-poverty-rate-function-in-r">TDD Example: A Poverty Rate Function in R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixtures-with-setup-and-helper-files">Fixtures with <code class="docutils literal notranslate"><span class="pre">setup</span></code> and Helper Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-tests">Skipping Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Integration with GitHub Actions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests-in-stata">Unit Tests in Stata</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-foundation-assert">The Foundation: <code class="docutils literal notranslate"><span class="pre">assert</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#certification-scripts-with-cscript">Certification Scripts with <code class="docutils literal notranslate"><span class="pre">cscript</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-that-errors-are-raised">Testing That Errors Are Raised</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizing-test-scripts">Organizing Test Scripts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-mata-code-testcase">For Mata Code: <code class="docutils literal notranslate"><span class="pre">TESTCASE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Integration with GitHub Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#honest-assessment">Honest Assessment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-resources">Further Resources</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="unit-tests-and-test-driven-development">
+<h1>Unit Tests and Test-Driven Development<a class="headerlink" href="#unit-tests-and-test-driven-development" title="Link to this heading">#</a></h1>
+<section id="background-what-are-unit-tests-and-tdd">
+<h2>Background: What Are Unit Tests and TDD?<a class="headerlink" href="#background-what-are-unit-tests-and-tdd" title="Link to this heading">#</a></h2>
+<section id="unit-tests">
+<h3>Unit Tests<a class="headerlink" href="#unit-tests" title="Link to this heading">#</a></h3>
+<p>A <strong>unit test</strong> is a small, automated check that verifies a specific, isolated piece of code behaves as expected. Each test exercises one function or method — the “unit” — and asserts that given some input, the output matches what you intended.</p>
+<p>Unit tests are valuable in research contexts for several reasons:</p>
+<ul class="simple">
+<li><p>They catch bugs early, before they contaminate results downstream</p></li>
+<li><p>They serve as executable documentation: the tests show exactly what a function is supposed to do</p></li>
+<li><p>They make refactoring safer — if you change the internals of a function, the tests tell you whether the behavior changed</p></li>
+<li><p>They support reproducibility by ensuring that each component of an analysis works correctly in isolation</p></li>
+</ul>
+</section>
+<section id="test-driven-development">
+<h3>Test-Driven Development<a class="headerlink" href="#test-driven-development" title="Link to this heading">#</a></h3>
+<p><strong>Test-driven development (TDD)</strong> is a practice where you write tests <em>before</em> writing the code they test. The workflow follows a short cycle:</p>
+<ol class="arabic simple">
+<li><p><strong>Red</strong> — write a test for a feature that does not yet exist; watch it fail</p></li>
+<li><p><strong>Green</strong> — write the minimum code needed to make the test pass</p></li>
+<li><p><strong>Refactor</strong> — clean up the code while keeping the tests green</p></li>
+</ol>
+<p>This cycle is often called <strong>Red-Green-Refactor</strong>.</p>
+<p>TDD forces you to think about the interface and expected behavior of a function before its implementation. This has several practical benefits:</p>
+<ul class="simple">
+<li><p>You end up with a test suite by construction — no need to go back and write tests later</p></li>
+<li><p>Edge cases and failure modes get considered up front</p></li>
+<li><p>Code tends to be more modular because you write it to be testable</p></li>
+<li><p>Debugging is faster because you know exactly when and where things broke</p></li>
+</ul>
+</section>
+<section id="tdd-and-ai-assisted-coding">
+<h3>TDD and AI-Assisted Coding<a class="headerlink" href="#tdd-and-ai-assisted-coding" title="Link to this heading">#</a></h3>
+<p>TDD pairs especially well with AI coding assistants. A productive workflow:</p>
+<ol class="arabic simple">
+<li><p>Write a test that specifies exactly what you want the function to do</p></li>
+<li><p>Paste the test into the AI assistant and ask it to implement the function</p></li>
+<li><p>Run the tests to verify the AI’s output is correct</p></li>
+<li><p>Iterate if tests fail</p></li>
+</ol>
+<p>The tests serve as a precise, machine-checkable contract between you and the AI, keeping you in control of the specification while delegating the implementation.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="unit-tests-in-python-with-pytest">
+<h2>Unit Tests in Python with pytest<a class="headerlink" href="#unit-tests-in-python-with-pytest" title="Link to this heading">#</a></h2>
+<p>The standard tool for testing Python code is <strong>pytest</strong> — simpler to write and read than the built-in <code class="docutils literal notranslate"><span class="pre">unittest</span></code> module.</p>
+<section id="installation">
+<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pytest
+</pre></div>
+</div>
+</section>
+<section id="a-basic-test">
+<h3>A Basic Test<a class="headerlink" href="#a-basic-test" title="Link to this heading">#</a></h3>
+<p>Suppose you have a function in <code class="docutils literal notranslate"><span class="pre">analysis.py</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">annualize_return</span><span class="p">(</span><span class="n">monthly_return</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert a monthly return to an annualized return.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">monthly_return</span><span class="p">)</span> <span class="o">**</span> <span class="mi">12</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>A test file <code class="docutils literal notranslate"><span class="pre">test_analysis.py</span></code> might look like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">annualize_return</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_zero_monthly_return</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">annualize_return</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_positive_monthly_return</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">annualize_return</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">result</span> <span class="o">-</span> <span class="mf">0.1268</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">0.0001</span>  <span class="c1"># ~12.68% annualized</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_negative_monthly_return</span><span class="p">():</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">annualize_return</span><span class="p">(</span><span class="o">-</span><span class="mf">0.01</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">result</span> <span class="o">&lt;</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</section>
+<section id="running-tests">
+<h3>Running Tests<a class="headerlink" href="#running-tests" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run all tests in the current directory</span>
+pytest
+
+<span class="c1"># Run a specific file</span>
+pytest<span class="w"> </span>test_analysis.py
+
+<span class="c1"># Run a specific test function</span>
+pytest<span class="w"> </span>test_analysis.py::test_zero_monthly_return
+
+<span class="c1"># Show verbose output</span>
+pytest<span class="w"> </span>-v
+</pre></div>
+</div>
+</section>
+<section id="testing-floating-point-results">
+<h3>Testing Floating-Point Results<a class="headerlink" href="#testing-floating-point-results" title="Link to this heading">#</a></h3>
+<p>Economic calculations often produce floating-point numbers. Use <code class="docutils literal notranslate"><span class="pre">pytest.approx</span></code> rather than exact equality:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">annualize_return</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_annualized_return</span><span class="p">():</span>
+    <span class="k">assert</span> <span class="n">annualize_return</span><span class="p">(</span><span class="mf">0.01</span><span class="p">)</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">0.12683</span><span class="p">,</span> <span class="n">rel</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="testing-for-expected-errors">
+<h3>Testing for Expected Errors<a class="headerlink" href="#testing-for-expected-errors" title="Link to this heading">#</a></h3>
+<p>Sometimes the right behavior is to raise an exception. Test that too:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">compute_gini</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_gini_rejects_negative_values</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">compute_gini</span><span class="p">([</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="tdd-example-calculating-a-poverty-rate">
+<h3>TDD Example: Calculating a Poverty Rate<a class="headerlink" href="#tdd-example-calculating-a-poverty-rate" title="Link to this heading">#</a></h3>
+<p><strong>Step 1 — Write the tests first:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests/test_poverty.py</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">poverty</span><span class="w"> </span><span class="kn">import</span> <span class="n">poverty_rate</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_all_above_threshold</span><span class="p">():</span>
+    <span class="n">incomes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">30000</span><span class="p">,</span> <span class="mi">45000</span><span class="p">,</span> <span class="mi">60000</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">poverty_rate</span><span class="p">(</span><span class="n">incomes</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_all_below_threshold</span><span class="p">():</span>
+    <span class="n">incomes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">8000</span><span class="p">,</span> <span class="mi">12000</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">poverty_rate</span><span class="p">(</span><span class="n">incomes</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span> <span class="o">==</span> <span class="mf">1.0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_half_below_threshold</span><span class="p">():</span>
+    <span class="n">incomes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10000</span><span class="p">,</span> <span class="mi">10000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">poverty_rate</span><span class="p">(</span><span class="n">incomes</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span> <span class="o">==</span> <span class="mf">0.5</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_empty_list_raises</span><span class="p">():</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">poverty_rate</span><span class="p">([],</span> <span class="n">threshold</span><span class="o">=</span><span class="mi">20000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> — all four tests fail because <code class="docutils literal notranslate"><span class="pre">poverty.py</span></code> does not exist yet. That is the <strong>Red</strong> step.</p>
+<p><strong>Step 2 — Write the minimum code to pass:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># poverty.py</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">poverty_rate</span><span class="p">(</span><span class="n">incomes</span><span class="p">,</span> <span class="n">threshold</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">incomes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;incomes list cannot be empty&quot;</span><span class="p">)</span>
+    <span class="n">below</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="mi">1</span> <span class="k">for</span> <span class="n">income</span> <span class="ow">in</span> <span class="n">incomes</span> <span class="k">if</span> <span class="n">income</span> <span class="o">&lt;</span> <span class="n">threshold</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">below</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">incomes</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Run <code class="docutils literal notranslate"><span class="pre">pytest</span></code> — all tests pass. That is the <strong>Green</strong> step.</p>
+<p><strong>Step 3 — Refactor if needed.</strong> The implementation is already simple, so nothing to change.</p>
+</section>
+<section id="fixtures-and-parametrize">
+<h3>Fixtures and Parametrize<a class="headerlink" href="#fixtures-and-parametrize" title="Link to this heading">#</a></h3>
+<p>Use <strong>fixtures</strong> to share setup data across tests without repetition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sample_dataframe</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+        <span class="s2">&quot;income&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">15000</span><span class="p">,</span> <span class="mi">25000</span><span class="p">,</span> <span class="mi">40000</span><span class="p">,</span> <span class="mi">80000</span><span class="p">],</span>
+        <span class="s2">&quot;employed&quot;</span><span class="p">:</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span>
+    <span class="p">})</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_mean_income</span><span class="p">(</span><span class="n">sample_dataframe</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">sample_dataframe</span><span class="p">[</span><span class="s2">&quot;income&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">==</span> <span class="mi">40000</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_employment_rate</span><span class="p">(</span><span class="n">sample_dataframe</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">sample_dataframe</span><span class="p">[</span><span class="s2">&quot;employed&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="mf">0.75</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">&#64;pytest.mark.parametrize</span></code> to run the same test across multiple inputs:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s2">&quot;monthly, expected&quot;</span><span class="p">,</span> <span class="p">[</span>
+    <span class="p">(</span><span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.0000</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1268</span><span class="p">),</span>
+    <span class="p">(</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.7959</span><span class="p">),</span>
+<span class="p">])</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_annualize_return_cases</span><span class="p">(</span><span class="n">monthly</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">annualize_return</span><span class="p">(</span><span class="n">monthly</span><span class="p">)</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="n">expected</span><span class="p">,</span> <span class="n">rel</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="organizing-tests">
+<h3>Organizing Tests<a class="headerlink" href="#organizing-tests" title="Link to this heading">#</a></h3>
+<p>A common project layout keeps tests in a <code class="docutils literal notranslate"><span class="pre">tests/</span></code> directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>project/
+├── analysis.py
+├── data_cleaning.py
+└── tests/
+    ├── test_analysis.py
+    └── test_data_cleaning.py
+</pre></div>
+</div>
+<p>pytest discovers test files automatically when they are named <code class="docutils literal notranslate"><span class="pre">test_*.py</span></code> or <code class="docutils literal notranslate"><span class="pre">*_test.py</span></code> and test functions are prefixed with <code class="docutils literal notranslate"><span class="pre">test_</span></code>.</p>
+</section>
+<section id="integration-with-github-actions">
+<h3>Integration with GitHub Actions<a class="headerlink" href="#integration-with-github-actions" title="Link to this heading">#</a></h3>
+<p>Tests run automatically on every push or pull request when combined with a CI workflow. A minimal <code class="docutils literal notranslate"><span class="pre">.github/workflows/tests.yml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Tests</span>
+
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v5</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3.11&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install pytest</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pytest</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="unit-tests-in-r-with-testthat">
+<h2>Unit Tests in R with testthat<a class="headerlink" href="#unit-tests-in-r-with-testthat" title="Link to this heading">#</a></h2>
+<p>The standard testing framework for R is <strong>testthat</strong>, developed by Hadley Wickham and part of the tidyverse ecosystem.</p>
+<section id="id1">
+<h3>Installation<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;testthat&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you are working inside an R package (the most common context for testthat), <code class="docutils literal notranslate"><span class="pre">usethis</span></code> can set up the testing infrastructure for you:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;usethis&quot;</span><span class="p">)</span>
+<span class="n">usethis</span><span class="o">::</span><span class="nf">use_testthat</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This creates a <code class="docutils literal notranslate"><span class="pre">tests/testthat/</span></code> directory and a <code class="docutils literal notranslate"><span class="pre">tests/testthat.R</span></code> runner file.</p>
+</section>
+<section id="id2">
+<h3>A Basic Test<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>Suppose you have a function in <code class="docutils literal notranslate"><span class="pre">R/analysis.R</span></code>:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">annualize_return</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">monthly_return</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">monthly_return</span><span class="p">)</span><span class="o">^</span><span class="m">12</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A test file <code class="docutils literal notranslate"><span class="pre">tests/testthat/test-analysis.R</span></code> might look like:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">testthat</span><span class="p">)</span>
+
+<span class="nf">test_that</span><span class="p">(</span><span class="s">&quot;zero monthly return gives zero annual return&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">expect_equal</span><span class="p">(</span><span class="nf">annualize_return</span><span class="p">(</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nf">test_that</span><span class="p">(</span><span class="s">&quot;positive monthly return gives positive annual return&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">expect_equal</span><span class="p">(</span><span class="nf">annualize_return</span><span class="p">(</span><span class="m">0.01</span><span class="p">),</span><span class="w"> </span><span class="m">0.12683</span><span class="p">,</span><span class="w"> </span><span class="n">tolerance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1e-4</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nf">test_that</span><span class="p">(</span><span class="s">&quot;negative monthly return gives negative annual return&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">expect_lt</span><span class="p">(</span><span class="nf">annualize_return</span><span class="p">(</span><span class="m">-0.01</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Running Tests<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run all tests in tests/testthat/</span>
+<span class="n">testthat</span><span class="o">::</span><span class="nf">test_dir</span><span class="p">(</span><span class="s">&quot;tests/testthat&quot;</span><span class="p">)</span>
+
+<span class="c1"># If inside a package, use devtools:</span>
+<span class="n">devtools</span><span class="o">::</span><span class="nf">test</span><span class="p">()</span>
+
+<span class="c1"># Run a single test file</span>
+<span class="n">testthat</span><span class="o">::</span><span class="nf">test_file</span><span class="p">(</span><span class="s">&quot;tests/testthat/test-analysis.R&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="common-expectation-functions">
+<h3>Common Expectation Functions<a class="headerlink" href="#common-expectation-functions" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Checks</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">expect_equal(x,</span> <span class="pre">y)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span></code> equals <code class="docutils literal notranslate"><span class="pre">y</span></code> (with optional <code class="docutils literal notranslate"><span class="pre">tolerance</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">expect_identical(x,</span> <span class="pre">y)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span></code> is identical to <code class="docutils literal notranslate"><span class="pre">y</span></code> (strict, no tolerance)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">expect_true(x)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span></code> is <code class="docutils literal notranslate"><span class="pre">TRUE</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">expect_false(x)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span></code> is <code class="docutils literal notranslate"><span class="pre">FALSE</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">expect_lt(x,</span> <span class="pre">y)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span></code> is less than <code class="docutils literal notranslate"><span class="pre">y</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">expect_gt(x,</span> <span class="pre">y)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span></code> is greater than <code class="docutils literal notranslate"><span class="pre">y</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">expect_error(expr)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">expr</span></code> throws an error</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">expect_warning(expr)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">expr</span></code> produces a warning</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">expect_message(expr)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">expr</span></code> produces a message</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">expect_length(x,</span> <span class="pre">n)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span></code> has length <code class="docutils literal notranslate"><span class="pre">n</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">expect_named(x,</span> <span class="pre">names)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span></code> has the given names</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="tdd-example-a-poverty-rate-function-in-r">
+<h3>TDD Example: A Poverty Rate Function in R<a class="headerlink" href="#tdd-example-a-poverty-rate-function-in-r" title="Link to this heading">#</a></h3>
+<p><strong>Step 1 — Write the tests first:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests/testthat/test-poverty.R</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">testthat</span><span class="p">)</span>
+
+<span class="nf">test_that</span><span class="p">(</span><span class="s">&quot;all incomes above threshold gives poverty rate of 0&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">expect_equal</span><span class="p">(</span><span class="nf">poverty_rate</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">30000</span><span class="p">,</span><span class="w"> </span><span class="m">45000</span><span class="p">,</span><span class="w"> </span><span class="m">60000</span><span class="p">),</span><span class="w"> </span><span class="n">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20000</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nf">test_that</span><span class="p">(</span><span class="s">&quot;all incomes below threshold gives poverty rate of 1&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">expect_equal</span><span class="p">(</span><span class="nf">poverty_rate</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">5000</span><span class="p">,</span><span class="w"> </span><span class="m">8000</span><span class="p">,</span><span class="w"> </span><span class="m">12000</span><span class="p">),</span><span class="w"> </span><span class="n">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20000</span><span class="p">),</span><span class="w"> </span><span class="m">1</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nf">test_that</span><span class="p">(</span><span class="s">&quot;half below threshold gives poverty rate of 0.5&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">expect_equal</span><span class="p">(</span><span class="nf">poverty_rate</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">10000</span><span class="p">,</span><span class="w"> </span><span class="m">10000</span><span class="p">,</span><span class="w"> </span><span class="m">30000</span><span class="p">,</span><span class="w"> </span><span class="m">30000</span><span class="p">),</span><span class="w"> </span><span class="n">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20000</span><span class="p">),</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span>
+<span class="p">})</span>
+
+<span class="nf">test_that</span><span class="p">(</span><span class="s">&quot;empty vector raises an error&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">expect_error</span><span class="p">(</span><span class="nf">poverty_rate</span><span class="p">(</span><span class="nf">numeric</span><span class="p">(</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">threshold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20000</span><span class="p">))</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Run the tests — they all fail. <strong>Red.</strong></p>
+<p><strong>Step 2 — Implement the function:</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># R/poverty.R</span>
+<span class="n">poverty_rate</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">incomes</span><span class="p">,</span><span class="w"> </span><span class="n">threshold</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">incomes</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="s">&quot;incomes vector cannot be empty&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="nf">mean</span><span class="p">(</span><span class="n">incomes</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">threshold</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Run the tests — they all pass. <strong>Green.</strong></p>
+</section>
+<section id="fixtures-with-setup-and-helper-files">
+<h3>Fixtures with <code class="docutils literal notranslate"><span class="pre">setup</span></code> and Helper Files<a class="headerlink" href="#fixtures-with-setup-and-helper-files" title="Link to this heading">#</a></h3>
+<p>For shared data or objects, place helper functions in <code class="docutils literal notranslate"><span class="pre">tests/testthat/helper.R</span></code> (testthat loads this automatically):</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># tests/testthat/helper.R</span>
+<span class="n">make_sample_data</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">data.frame</span><span class="p">(</span>
+<span class="w">    </span><span class="n">income</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="m">15000</span><span class="p">,</span><span class="w"> </span><span class="m">25000</span><span class="p">,</span><span class="w"> </span><span class="m">40000</span><span class="p">,</span><span class="w"> </span><span class="m">80000</span><span class="p">),</span>
+<span class="w">    </span><span class="n">employed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">c</span><span class="p">(</span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">,</span><span class="w"> </span><span class="kc">FALSE</span><span class="p">,</span><span class="w"> </span><span class="kc">TRUE</span><span class="p">)</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then use it in any test file:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">test_that</span><span class="p">(</span><span class="s">&quot;mean income is computed correctly&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">df</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">make_sample_data</span><span class="p">()</span>
+<span class="w">  </span><span class="nf">expect_equal</span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">income</span><span class="p">),</span><span class="w"> </span><span class="m">40000</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="skipping-tests">
+<h3>Skipping Tests<a class="headerlink" href="#skipping-tests" title="Link to this heading">#</a></h3>
+<p>You can skip a test conditionally, for example when a required package is not installed or when running on CI:</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">test_that</span><span class="p">(</span><span class="s">&quot;function works with optional dependency&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nf">skip_if_not_installed</span><span class="p">(</span><span class="s">&quot;data.table&quot;</span><span class="p">)</span>
+<span class="w">  </span><span class="c1"># ... test body</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Integration with GitHub Actions<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run R Tests</span>
+
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">r-lib/actions/setup-r@v2</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rscript -e &quot;install.packages(c(&#39;testthat&#39;, &#39;devtools&#39;))&quot;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rscript -e &quot;devtools::test()&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="unit-tests-in-stata">
+<h2>Unit Tests in Stata<a class="headerlink" href="#unit-tests-in-stata" title="Link to this heading">#</a></h2>
+<p>Stata’s testing ecosystem is considerably thinner than Python’s or R’s, but useful options exist. There is no single widely adopted framework equivalent to pytest or testthat — the practical approach combines built-in commands with a conventional script structure.</p>
+<section id="the-foundation-assert">
+<h3>The Foundation: <code class="docutils literal notranslate"><span class="pre">assert</span></code><a class="headerlink" href="#the-foundation-assert" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">assert</span></code> is Stata’s built-in assertion command. It evaluates a condition across all observations (or as a scalar expression) and throws an error if the condition is false, stopping execution immediately:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">* Check that no negative values exist after data cleaning</span>
+<span class="k">assert</span> income <span class="o">&gt;=</span> <span class="m">0</span>
+
+<span class="c1">* Check a scalar result</span>
+<span class="k">assert e</span>(N) <span class="o">==</span> <span class="m">1000</span>
+<span class="k">assert</span> <span class="nf">abs</span>(_b[x1] <span class="o">-</span> <span class="m">2</span>) <span class="o">&lt;</span> <span class="m">0.5</span>
+</pre></div>
+</div>
+<p>This is the building block for all Stata testing.</p>
+</section>
+<section id="certification-scripts-with-cscript">
+<h3>Certification Scripts with <code class="docutils literal notranslate"><span class="pre">cscript</span></code><a class="headerlink" href="#certification-scripts-with-cscript" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">cscript</span></code> is an undocumented but widely used Stata command — StataCorp uses it internally to test official commands, and professional ado-file developers use it before releasing packages. A certification script is a <code class="docutils literal notranslate"><span class="pre">.do</span></code> file that exercises your program against data with known properties and uses <code class="docutils literal notranslate"><span class="pre">assert</span></code> to verify results.</p>
+<p>The core idea: generate synthetic data where you know the true answer, run your estimator, and assert the output matches expectations.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">* test_myreg.do — certification script for myreg.ado</span>
+
+<span class="k">cscript</span> <span class="s">&quot;myreg: basic OLS recovery&quot;</span>
+
+<span class="c1">* Generate data with known DGP: y = 2*x + noise</span>
+<span class="k">clear</span>
+<span class="k">set</span> seed <span class="m">12345</span>
+<span class="k">set</span> obs <span class="m">500</span>
+<span class="k">gen</span> x = <span class="nf">rnormal</span>()
+<span class="k">gen</span> y = <span class="m">2</span> <span class="o">*</span> x <span class="o">+</span> <span class="nf">rnormal</span>()
+
+<span class="c1">* Run the estimator under test</span>
+myreg y x
+
+<span class="c1">* Assert expected behavior</span>
+<span class="k">assert</span> <span class="nf">abs</span>(_b[x] <span class="o">-</span> <span class="m">2</span>) <span class="o">&lt;</span> <span class="m">0.15</span>          <span class="c1">// coefficient near true value of 2</span>
+<span class="k">assert</span> <span class="nf">abs</span>(_b[_cons]) <span class="o">&lt;</span> <span class="m">0.15</span>          <span class="c1">// intercept near true value of 0</span>
+<span class="k">assert e</span>(df_r) <span class="o">==</span> <span class="m">498</span>                  <span class="c1">// correct degrees of freedom</span>
+<span class="k">assert</span> <span class="o">!</span><span class="nf">missing</span>(<span class="nf">e</span>(r2))                 <span class="c1">// R-squared was computed</span>
+<span class="k">assert e</span>(r2) <span class="o">&gt;</span> <span class="m">0</span> <span class="o">&amp;</span><span class="k"> e</span>(r2) <span class="o">&lt;</span> <span class="m">1</span>         <span class="c1">// R-squared is in [0,1]</span>
+</pre></div>
+</div>
+<p>Run with <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">test_myreg.do</span></code>. A failed <code class="docutils literal notranslate"><span class="pre">assert</span></code> stops the script and returns a non-zero exit code, which CI systems can detect.</p>
+</section>
+<section id="testing-that-errors-are-raised">
+<h3>Testing That Errors Are Raised<a class="headerlink" href="#testing-that-errors-are-raised" title="Link to this heading">#</a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">capture</span></code> to test that your program correctly rejects bad input:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">* myreg should error if fewer than 2 observations</span>
+<span class="k">clear</span>
+<span class="k">set</span> obs <span class="m">1</span>
+<span class="k">gen</span> y = <span class="m">5</span>
+<span class="k">gen</span> x = <span class="m">3</span>
+
+<span class="k">capture</span> myreg y x
+<span class="k">assert</span> _rc <span class="o">!=</span> <span class="m">0</span>    <span class="c1">// confirm a non-zero return code (i.e., an error occurred)</span>
+</pre></div>
+</div>
+</section>
+<section id="organizing-test-scripts">
+<h3>Organizing Test Scripts<a class="headerlink" href="#organizing-test-scripts" title="Link to this heading">#</a></h3>
+<p>A simple project layout:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>project/
+├── myreg.ado
+├── myreg2.ado
+└── tests/
+    ├── test_myreg.do
+    └── test_myreg2.do
+</pre></div>
+</div>
+<p>Running all tests:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>stata<span class="w"> </span>-b<span class="w"> </span><span class="k">do</span><span class="w"> </span>tests/test_myreg.do
+stata<span class="w"> </span>-b<span class="w"> </span><span class="k">do</span><span class="w"> </span>tests/test_myreg2.do
+</pre></div>
+</div>
+</section>
+<section id="for-mata-code-testcase">
+<h3>For Mata Code: <code class="docutils literal notranslate"><span class="pre">TESTCASE</span></code><a class="headerlink" href="#for-mata-code-testcase" title="Link to this heading">#</a></h3>
+<p>If your estimator uses Mata for numerical routines, the community-written <code class="docutils literal notranslate"><span class="pre">TESTCASE</span></code> package (available on SSC) provides a more structured, xUnit-style framework with explicit pass/fail reporting:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">ssc</span> install testcase
+</pre></div>
+</div>
+<p>This is the closest Stata equivalent to pytest or testthat, but it only applies to Mata code, not ado-files.</p>
+</section>
+<section id="id5">
+<h3>Integration with GitHub Actions<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Stata Tests</span>
+
+<span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">test</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v4</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run certification scripts</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">          </span><span class="no">stata -b do tests/test_myreg.do</span>
+<span class="w">          </span><span class="no">grep -c &quot;r(9)&quot; tests/test_myreg.log &amp;&amp; exit 1 || exit 0</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Running Stata in CI requires a license. Some teams use a Stata license server or the <code class="docutils literal notranslate"><span class="pre">stata-ci</span></code> Docker image. An alternative is to test the core numerical routines in a language with better CI support (Python or R) and reserve Stata tests for local runs.</p>
+</div>
+</section>
+<section id="honest-assessment">
+<h3>Honest Assessment<a class="headerlink" href="#honest-assessment" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tool</p></th>
+<th class="head"><p>Best for</p></th>
+<th class="head"><p>Maturity</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span></code></p></td>
+<td><p>Quick sanity checks in any <code class="docutils literal notranslate"><span class="pre">.do</span></code> file</p></td>
+<td><p>Built-in</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">cscript</span></code></p></td>
+<td><p>Testing ado-files before release</p></td>
+<td><p>Undocumented but widely used</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TESTCASE</span></code></p></td>
+<td><p>Testing Mata functions</p></td>
+<td><p>Community package (SSC)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The most practical approach for someone writing econometrics estimators in Stata: write a dedicated <code class="docutils literal notranslate"><span class="pre">test_yourcommand.do</span></code> that generates synthetic data with known properties (so you know the true answer), runs your program, and uses <code class="docutils literal notranslate"><span class="pre">assert</span></code> to verify the results. This covers the most important case — checking that your estimator recovers the right answer — even without a formal testing framework.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="further-resources">
+<h2>Further Resources<a class="headerlink" href="#further-resources" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.pytest.org/">pytest Documentation</a> — official reference for pytest features and configuration</p></li>
+<li><p><a class="reference external" href="https://realpython.com/python-testing/">Real Python: Getting Started with Testing</a> — a practical introduction to testing in Python</p></li>
+<li><p><a class="reference external" href="https://testthat.r-lib.org/">testthat Documentation</a> — official reference for testthat</p></li>
+<li><p><a class="reference external" href="https://r-pkgs.org/testing-basics.html">R Packages: Testing (Hadley Wickham)</a> — the definitive guide to testing in R packages</p></li>
+<li><p><a class="reference external" href="https://www.obeythetestinggoat.com/">Test-Driven Development with Python</a> — a free book using TDD to build a web application step by step</p></li>
+<li><p><a class="reference external" href="https://www.stata-journal.com/article.html?article=pr0001">Statistical Software Certification (Gould, 2001)</a> — the Stata Journal article that introduced <code class="docutils literal notranslate"><span class="pre">cscript</span></code> and the certification script approach</p></li>
+<li><p><a class="reference external" href="https://ideas.repec.org/c/boc/bocode/s457826.html">TESTCASE on SSC</a> — Mata-based unit testing framework for Stata</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./background_tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="text_editors.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Text Editors</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../agentic_ai/overview.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Agentic AI in Economics Research</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#background-what-are-unit-tests-and-tdd">Background: What Are Unit Tests and TDD?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests">Unit Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-driven-development">Test-Driven Development</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tdd-and-ai-assisted-coding">TDD and AI-Assisted Coding</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests-in-python-with-pytest">Unit Tests in Python with pytest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-basic-test">A Basic Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-tests">Running Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-floating-point-results">Testing Floating-Point Results</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-for-expected-errors">Testing for Expected Errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tdd-example-calculating-a-poverty-rate">TDD Example: Calculating a Poverty Rate</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixtures-and-parametrize">Fixtures and Parametrize</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizing-tests">Organizing Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-with-github-actions">Integration with GitHub Actions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests-in-r-with-testthat">Unit Tests in R with testthat</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Installation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">A Basic Test</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Running Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#common-expectation-functions">Common Expectation Functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tdd-example-a-poverty-rate-function-in-r">TDD Example: A Poverty Rate Function in R</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fixtures-with-setup-and-helper-files">Fixtures with <code class="docutils literal notranslate"><span class="pre">setup</span></code> and Helper Files</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-tests">Skipping Tests</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Integration with GitHub Actions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests-in-stata">Unit Tests in Stata</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-foundation-assert">The Foundation: <code class="docutils literal notranslate"><span class="pre">assert</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#certification-scripts-with-cscript">Certification Scripts with <code class="docutils literal notranslate"><span class="pre">cscript</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-that-errors-are-raised">Testing That Errors Are Raised</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#organizing-test-scripts">Organizing Test Scripts</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-mata-code-testcase">For Mata Code: <code class="docutils literal notranslate"><span class="pre">TESTCASE</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Integration with GitHub Actions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#honest-assessment">Honest Assessment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-resources">Further Resources</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Department of Economics, University of South Carolina
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
